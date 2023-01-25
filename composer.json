@@ -1,0 +1,66 @@
+{
+  "name": "k10r/development",
+  "description": "Plugin for Shopware 6 development environments",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "Commercial",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Kellerkinder GmbH",
+      "email": "hallo@kellerkinder.de",
+      "homepage": "https://www.kellerkinder.de/",
+      "role": "Contributor"
+    }
+  ],
+  "require": {
+    "php": "^7.4.3 || ^8.0",
+    "shopware/core": "^6.4.2.0"
+  },
+  "require-dev": {
+    "k10r/codestyle": "^2.0",
+    "phpmd/phpmd": "^2.12",
+    "phpstan/phpstan": "^1.5",
+    "phpstan/phpstan-phpunit": "^1.1",
+    "phpunit/phpunit": "^9.5"
+  },
+  "extra": {
+    "shopware-plugin-class": "K10rDevelopment\\K10rDevelopment",
+    "copyright": "(c) Kellerkinder GmbH",
+    "label": {
+      "de-DE": "Plugin für Entwicklungsumgebungen",
+      "en-GB": "Plugin for Development Environments"
+    },
+    "description": {
+      "de-DE": "Setzt Dinge für Entwicklungsumgebungen.",
+      "en-GB": "Adds things for development environments."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://www.kellerkinder.de",
+      "en-GB": "https://www.kellerkinder.de"
+    },
+    "supportLink": {
+      "de-DE": "https://www.kellerkinder.de",
+      "en-GB": "https://www.kellerkinder.de"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "K10rDevelopment\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "K10rDevelopment\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "phpcs": "vendor/bin/php-cs-fixer fix",
+    "phpmd": "vendor/bin/phpmd src xml phpmd.xml",
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon src"
+  }
+}
