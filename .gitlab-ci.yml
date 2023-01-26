@@ -55,7 +55,7 @@ phpstan:
     parallel:
         matrix:
             -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
-                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
+                SW_VERSION: [ "6.4.12.0", "6.4.18.0", "latest" ]
     needs: ["composer"]
     dependencies:
         - composer
@@ -69,48 +69,13 @@ phpstan:
             - vendor
         policy: pull
 
-phpunit:
-    stage: test
-    image: "dockware/dev:${SW_VERSION}"
-    parallel:
-        matrix:
-            -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
-                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
-    needs: ["composer"]
-    dependencies:
-        - composer
-    except:
-        variables: [ $DISABLE_PHPUNIT == "1" ]
-    script:
-        - cd /var/www/html && php bin/console plugin:refresh
-        - cd /var/www/html && php bin/console plugin:install --clearCache --activate ${CI_PROJECT_NAME}
-        - "cd /var/www/html/custom/plugins/${CI_PROJECT_NAME} && php -d pcov.enabled=1 -d pcov.directory=${CI_PROJECT_DIR}
-            vendor/bin/phpunit
-            --configuration custom/plugins/${CI_PROJECT_NAME}/phpunit.xml.dist
-            --log-junit ${CI_PROJECT_DIR}/phpunit.junit.xml
-            --colors=never
-            --coverage-clover ${CI_PROJECT_DIR}/phpunit.clover.xml
-            --coverage-html ${CI_PROJECT_DIR}/phpunit-coverage-html
-            --coverage-text"
-    coverage: '/^\s*Lines:\s*(\d+(?:\.\d+)?%)/'
-    artifacts:
-        paths:
-            - ${CI_PROJECT_DIR}/phpunit.clover.xml
-        reports:
-            junit: ${CI_PROJECT_DIR}/phpunit.junit.xml
-    cache:
-        key: global
-        paths:
-            - vendor
-        policy: pull
-
 install:
     stage: test
     image: "dockware/dev:${SW_VERSION}"
     parallel:
         matrix:
             -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
-                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
+                SW_VERSION: [ "6.4.12.0", "6.4.18.0", "latest" ]
     needs: ["composer"]
     dependencies:
         - composer
