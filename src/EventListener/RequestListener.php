@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace K10rDevelopment\EventListener;
 
-use RuntimeException;
 use Shopware\Core\DevOps\Environment\EnvironmentHelper;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -44,13 +43,13 @@ class RequestListener implements EventSubscriberInterface
         $mailerUrl = (string) (EnvironmentHelper::getVariable('MAILER_URL') ?? EnvironmentHelper::getVariable('MAILER_DSN'));
 
         if (strpos($mailerUrl, self::VALID_MAILER_URL) === false) {
-            throw new RuntimeException(sprintf('Fix your mailer URL, set it to %s', self::VALID_MAILER_URL));
+            throw new \RuntimeException(sprintf('Fix your mailer URL, set it to %s', self::VALID_MAILER_URL));
         }
 
         $emailAgent = $this->systemConfigService->get(self::MAILER_CONFIGURATION_KEY);
 
         if (!in_array($emailAgent, self::VALID_MAILER_CONFIGURATION_VALUES)) {
-            throw new RuntimeException('Fix your mailer configuration, set it to use the environment');
+            throw new \RuntimeException('Fix your mailer configuration, set it to use the environment');
         }
     }
 }

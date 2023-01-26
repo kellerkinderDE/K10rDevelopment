@@ -19,7 +19,7 @@
     "shopware/core": "^6.4.2.0"
   },
   "require-dev": {
-    "k10r/codestyle": "^2.0",
+    "k10r/codestyle": "^3.0",
     "phpmd/phpmd": "^2.12",
     "phpstan/phpstan": "^1.5",
     "phpstan/phpstan-phpunit": "^1.1",
