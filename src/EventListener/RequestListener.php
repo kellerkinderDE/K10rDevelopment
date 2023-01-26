@@ -41,7 +41,7 @@ class RequestListener implements EventSubscriberInterface
 
     private function assertMailConfiguration(): void
     {
-        $mailerUrl = EnvironmentHelper::getVariable('MAILER_URL') ?? EnvironmentHelper::getVariable('MAILER_DSN');
+        $mailerUrl = (string) (EnvironmentHelper::getVariable('MAILER_URL') ?? EnvironmentHelper::getVariable('MAILER_DSN'));
 
         if (strpos($mailerUrl, self::VALID_MAILER_URL) === false) {
             throw new RuntimeException(sprintf('Fix your mailer URL, set it to %s', self::VALID_MAILER_URL));

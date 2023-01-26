@@ -2,7 +2,8 @@
 
 {% block layout_header %}
     {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
-        type: "warning",
+        type: "danger",
+        heading: "K10rDevelopment.title" | trans,
         content: "K10rDevelopment.message" | trans
     } %}
 
