@@ -10,7 +10,7 @@ cache:
 
 variables:
     DOCKER_DRIVER: overlay2
-    BASE_SW_VERSION: '6.4.0.0'
+    BASE_SW_VERSION: '6.4.2.0'
     PHP_VERSION: '7.4'
     DOCKWARE_CI: '1'
     COMPOSER_COMMAND: "composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader"
@@ -54,8 +54,8 @@ phpstan:
     image: "dockware/dev:${SW_VERSION}"
     parallel:
         matrix:
-            -   PHP_VERSION: [ "7.4", "8.0" ]
-                SW_VERSION: [ "6.4.0.0", "6.4.1.0", "6.4.2.0", "6.4.3.0", "6.4.4.0", "6.4.5.0", "6.4.6.0", "6.4.7.0", "6.4.8.0", "6.4.9.0", "6.4.10.0", "6.4.11.0", "6.4.12.0", "latest" ]
+            -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
+                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
     needs: ["composer"]
     dependencies:
         - composer
@@ -74,8 +74,8 @@ phpunit:
     image: "dockware/dev:${SW_VERSION}"
     parallel:
         matrix:
-            -   PHP_VERSION: [ "7.4", "8.0" ]
-                SW_VERSION: [ "6.4.0.0", "6.4.1.0", "6.4.2.0", "6.4.3.0", "6.4.4.0", "6.4.5.0", "6.4.6.0", "6.4.7.0", "6.4.8.0", "6.4.9.0", "6.4.10.0", "6.4.11.0", "6.4.12.0", "latest" ]
+            -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
+                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
     needs: ["composer"]
     dependencies:
         - composer
@@ -109,8 +109,8 @@ install:
     image: "dockware/dev:${SW_VERSION}"
     parallel:
         matrix:
-            -   PHP_VERSION: [ "7.4", "8.0" ]
-                SW_VERSION: [ "6.4.0.0", "6.4.1.0", "6.4.2.0", "6.4.3.0", "6.4.4.0", "6.4.5.0", "6.4.6.0", "6.4.7.0", "6.4.8.0", "6.4.9.0", "6.4.10.0", "6.4.11.0", "6.4.12.0", "latest" ]
+            -   PHP_VERSION: [ "7.4", "8.0", "8.1" ]
+                SW_VERSION: [ "6.4.2.0", "6.4.12.0", "6.4.18.0", "latest" ]
     needs: ["composer"]
     dependencies:
         - composer
