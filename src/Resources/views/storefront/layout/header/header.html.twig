@@ -1,8 +1,8 @@
-{% sw_extends "@Storefront/storefront/base.html.twig" %}
+{% sw_extends "@Storefront/storefront/layout/header/header.html.twig" %}
 
-{% block base_header %}
+{% block layout_header %}
     {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
-        type: "primary",
+        type: "warning",
         content: "K10rDevelopment.message" | trans
     } %}
 

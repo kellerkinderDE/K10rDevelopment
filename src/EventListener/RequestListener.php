@@ -50,7 +50,7 @@ class RequestListener implements EventSubscriberInterface
         $emailAgent = $this->systemConfigService->get(self::MAILER_CONFIGURATION_KEY);
 
         if (!in_array($emailAgent, self::VALID_MAILER_CONFIGURATION_VALUES)) {
-            throw new RuntimeException('Fix your mailer URL, set it to use the environment');
+            throw new RuntimeException('Fix your mailer configuration, set it to use the environment');
         }
     }
 }
