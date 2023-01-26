@@ -1,12 +1,10 @@
 {% sw_extends "@Storefront/storefront/base.html.twig" %}
 
 {% block base_header %}
-    {% if config('K10rDevelopment.config.active') == '1' %}
-        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
-            type:"primary",
-            content:"DEV"
-        } %}
-    {% endif %}
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type: "primary",
+        content: "K10rDevelopment.message" | trans
+    } %}
 
     {{ parent() }}
 {% endblock %}
