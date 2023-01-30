@@ -9,7 +9,6 @@
     </description>
     <exclude-pattern>vendor</exclude-pattern>
     <exclude-pattern>node_modules</exclude-pattern>
-    <exclude-pattern>Tests</exclude-pattern>
     <rule ref="rulesets/cleancode.xml">
         <exclude name="StaticAccess" />
     </rule>

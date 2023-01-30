@@ -1,0 +1,11 @@
+{% sw_extends "@Storefront/storefront/layout/header/header.html.twig" %}
+
+{% block layout_header %}
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type: "danger",
+        heading: "K10rDevelopment.title" | trans,
+        content: "K10rDevelopment.message" | trans
+    } %}
+
+    {{ parent() }}
+{% endblock %}

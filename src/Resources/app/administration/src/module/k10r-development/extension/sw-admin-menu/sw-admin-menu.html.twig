@@ -1,0 +1,6 @@
+{% block sw_admin_menu_navigation_main_items %}
+    <sw-alert variant="error" :title="$tc('k10r-development.menu.title')" :closable="false">
+        {{ $tc('k10r-development.menu.message') }}
+    </sw-alert>
+    {% parent %}
+{% endblock %}

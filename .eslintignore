@@ -3,4 +3,3 @@ vendor/
 tests/
 src/Resources/public
 src/Resources/app/**/dist
-coverage/
