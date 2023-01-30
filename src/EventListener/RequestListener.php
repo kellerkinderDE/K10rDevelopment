@@ -11,7 +11,10 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 class RequestListener implements EventSubscriberInterface
 {
-    private const VALID_MAILER_URL                  = 'smtp://127.0.0.1:1025';
+    private const VALID_MAILER_URLS = [
+        'smtp://127.0.0.1:1025',
+        'smtp://localhost:1025',
+    ];
     private const MAILER_CONFIGURATION_KEY          = 'core.mailerSettings.emailAgent';
     private const VALID_MAILER_CONFIGURATION_VALUES = [
         '',
@@ -40,10 +43,18 @@ class RequestListener implements EventSubscriberInterface
 
     private function assertMailConfiguration(): void
     {
-        $mailerUrl = (string) (EnvironmentHelper::getVariable('MAILER_URL') ?? EnvironmentHelper::getVariable('MAILER_DSN'));
+        $mailerUrl        = (string) (EnvironmentHelper::getVariable('MAILER_URL') ?? EnvironmentHelper::getVariable('MAILER_DSN'));
+        $mailerUrlIsValid = false;
+        foreach (self::VALID_MAILER_URLS as $validMailerUrl) {
+            if (strpos($mailerUrl, $validMailerUrl) === 0) {
+                $mailerUrlIsValid = true;
 
-        if (strpos($mailerUrl, self::VALID_MAILER_URL) === false) {
-            throw new \RuntimeException(sprintf('Fix your mailer URL, set it to %s', self::VALID_MAILER_URL));
+                break;
+            }
+        }
+
+        if (!$mailerUrlIsValid) {
+            throw new \RuntimeException(sprintf('Fix your mailer URL, set it to one of: %s', implode(', ', self::VALID_MAILER_URLS)));
         }
 
         $emailAgent = $this->systemConfigService->get(self::MAILER_CONFIGURATION_KEY);
