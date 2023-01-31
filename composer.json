@@ -3,7 +3,7 @@
   "description": "Plugin for Shopware 6 development environments",
   "version": "1.0.0",
   "type": "shopware-platform-plugin",
-  "license": "Commercial",
+  "license": "MIT",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "authors": [
