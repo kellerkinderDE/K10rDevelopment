@@ -11,7 +11,7 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
-class RequestListener implements EventSubscriberInterface
+class MailListener implements EventSubscriberInterface
 {
     private const VALID_MAILER_URLS = [
         'smtp://127.0.0.1:1025',
