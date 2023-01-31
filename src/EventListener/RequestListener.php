@@ -6,6 +6,8 @@ namespace K10rDevelopment\EventListener;
 
 use Shopware\Core\DevOps\Environment\EnvironmentHelper;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
@@ -32,11 +34,17 @@ class RequestListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'kernel.controller' => 'onKernelController',
+            'kernel.controller'    => 'onKernelController',
+            ConsoleEvents::COMMAND => 'onCommand',
         ];
     }
 
     public function onKernelController(ControllerEvent $event): void
+    {
+        $this->assertMailConfiguration();
+    }
+
+    public function onCommand(ConsoleCommandEvent $event): void
     {
         $this->assertMailConfiguration();
     }
