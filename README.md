@@ -10,7 +10,7 @@ your mailer configuration is set to send to a local mail server (like https://gi
 ### Installation
 Include the plugin in your local Shopware system:
 ```
-composer req k10r/development
+composer req k10r/development --dev
 ```
 
 Install the plugin. Make sure to only do this on your local installation and not on a server installation or any shop
