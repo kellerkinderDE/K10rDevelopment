@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace K10rDevelopment\EventListener;
 
+use Doctrine\DBAL\Connection;
 use Shopware\Core\DevOps\Environment\EnvironmentHelper;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\Console\ConsoleEvents;
@@ -24,11 +25,14 @@ class MailListener implements EventSubscriberInterface
     ];
 
     private SystemConfigService $systemConfigService;
+    private Connection $connection;
 
     public function __construct(
-        SystemConfigService $systemConfigService
+        SystemConfigService $systemConfigService,
+        Connection $connection
     ) {
         $this->systemConfigService = $systemConfigService;
+        $this->connection          = $connection;
     }
 
     public static function getSubscribedEvents(): array
@@ -41,12 +45,16 @@ class MailListener implements EventSubscriberInterface
 
     public function onKernelController(ControllerEvent $event): void
     {
-        $this->assertMailConfiguration();
+        if ($this->connection->isConnected()) {
+            $this->assertMailConfiguration();
+        }
     }
 
     public function onCommand(ConsoleCommandEvent $event): void
     {
-        $this->assertMailConfiguration();
+        if ($this->connection->isConnected()) {
+            $this->assertMailConfiguration();
+        }
     }
 
     private function assertMailConfiguration(): void
